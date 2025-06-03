@@ -168,7 +168,7 @@ const data = {
               question: "Quel jeu de battle royale développé par Epic Games est sorti en accès libre en 2017 ?",
               answers: [
                 { id: '1', text: 'Apex Legends', isCorrect: false },
-                { id: '2', text: 'PlayerUnknown's Battlegrounds', isCorrect: false },
+                { id: '2', text: 'PlayerUnknowns Battlegrounds', isCorrect: false },
                 { id: '3', text: 'Fortnite', isCorrect: true },
                 { id: '4', text: 'Call of Duty: Warzone', isCorrect: false },
                 { id: '5', text: 'Realm Royale', isCorrect: false },
@@ -223,7 +223,7 @@ const data = {
             { id: 4, question: "Quel est le film français le plus vu au cinéma depuis sa sortie ?", answers: [
                 { id: '1', text: 'Intouchables', isCorrect: true },
                 { id: '2', text: 'La Grande Vadrouille', isCorrect: false },
-                { id: '3', text: 'Bienvenue chez les Ch'tis', isCorrect: false },
+                { id: '3', text: 'Bienvenue chez les Chtis', isCorrect: false },
                 { id: '4', text: 'Les Choristes', isCorrect: false },
                 { id: '5', text: 'Astérix et Obélix : Mission Cléopâtre', isCorrect: false },
                 { id: '6', text: 'Le Petit Nicolas', isCorrect: false },
@@ -280,7 +280,7 @@ const data = {
                 { id: '5', text: 'Die Hard', isCorrect: false },
                 { id: '6', text: 'Rambo', isCorrect: false },
                 { id: '7', text: 'RoboCop', isCorrect: false },
-                { id: '8', text: 'L'Arme fatale', isCorrect: false },
+                { id: '8', text: 'LArme fatale', isCorrect: false },
                 { id: '9', text: 'Aliens', isCorrect: false },
                 { id: '10', text: 'True Lies', isCorrect: false }
               ]
