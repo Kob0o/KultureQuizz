@@ -4,11 +4,12 @@ body,
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: #fff;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #fff;
 }
 
 .logo {
@@ -78,7 +79,7 @@ body,
 h1 {
   font-size: 2.1rem;
   margin-bottom: 10px;
-  color: #111;
+  color: #ffffff;
   letter-spacing: 1px;
 }
 
@@ -132,34 +133,34 @@ h1 {
 }
 
 .answers {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin: 24px 0 18px 0;
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0;
 }
 
 .answers button {
-  padding: 13px 0;
-  border: none;
-  border-radius: 10px;
-  background: #f5f5f5;
-  color: #111;
-  font-size: 1.08rem;
-  font-weight: 500;
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
-  transition: background 0.18s, color 0.18s, transform 0.12s;
+  transition: all 0.2s;
+  width: 100%;
+  text-align: left;
+}
+
+.answers button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .answers button.selected {
   background: #ff9800;
+  border-color: #ff9800;
   color: #fff;
-  transform: scale(1.03);
-}
-
-.answers button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+  transform: scale(1.02);
 }
 
 .next-btn {
@@ -247,7 +248,7 @@ h1,
 .answers button,
 .score-section h2,
 .score-section button {
-  color: #111 !important;
+  color: #ffffff !important;
 }
 
 .answers button.selected {
@@ -258,4 +259,206 @@ h1,
 .next-btn,
 .category-btn {
   color: #fff !important;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+  background-color: rgba(198, 40, 40, 0.2);
+  color: #ff6b6b;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(198, 40, 40, 0.3);
+}
+
+.loading {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 2rem 0;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.question-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question-header {
+  margin-bottom: 2rem;
+}
+
+.question-header h2 {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.question-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+.navigation {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.score-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.score-header {
+  margin-bottom: 2rem;
+}
+
+.score-header h2 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.score-text {
+  font-size: 1.5rem;
+  color: #666;
+  margin: 1rem 0;
+}
+
+button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background-color: #2196f3;
+  color: white;
+}
+
+button.primary:hover {
+  background-color: #1976d2;
+}
+
+button.secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+button.secondary:hover {
+  background-color: #bdbdbd;
+}
+
+/* Styles spécifiques pour les boutons de navigation */
+.navigation button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navigation button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Styles pour le bouton suivant */
+.next-btn {
+  background: #ff9800;
+  color: #fff;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  margin-top: 1rem;
+  border: none;
+}
+
+.next-btn:hover:not(:disabled) {
+  background: #ff7300;
+  transform: translateY(-2px);
+}
+
+.next-btn:disabled {
+  background: rgba(255, 152, 0, 0.3);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Styles pour les boutons de catégorie */
+.category-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.category-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Styles pour les boutons du score */
+.score-section button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 0.5rem;
+}
+
+.score-section button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }

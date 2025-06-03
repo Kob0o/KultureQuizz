@@ -449,7 +449,7 @@ const data = {
             {
                 id: 1,
                 question: "Qui est la personne présente sur cette image ?",
-                image: "https://i.pinimg.com/originals/00/00/00/00000000000000000000000000000000.jpg",
+                image: "https://cdn.tv-programme.com/photos/adriana-chechik_people_10_102280_1200.webp",
                 answers: [
                     { id: '1', text: 'Abella Danger', isCorrect: true },
                     { id: '2', text: 'Mia Malkova', isCorrect: false },
