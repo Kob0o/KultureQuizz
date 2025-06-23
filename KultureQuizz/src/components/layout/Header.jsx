@@ -1,28 +1,15 @@
-import { useNavigate } from 'react-router-dom'
-import { supabase } from '../../config/supabase'
-
-const Header = ({ user }) => {
-  const navigate = useNavigate()
-
+const Header = () => {
   return (
-    <header className="flex justify-between items-center py-4 mb-12">
-      <h1 className="text-white text-4xl font-bold m-0 drop-shadow-md">
-        Kulture Quizz
-      </h1>
-      <div className="relative">
-        <button 
-          className="bg-transparent border-none p-0 cursor-pointer transition-transform hover:scale-110"
-          onClick={() => navigate('/profile')}
-        >
-          <img 
-            src={user?.user_metadata?.picture} 
-            alt="Profile" 
-            className="w-[50px] h-[50px] rounded-full border-2 border-[#ff9800] shadow-lg object-cover"
-            crossOrigin="anonymous"
-            referrerPolicy="no-referrer"
-          />
-        </button>
-      </div>
+    <header className="home-content">
+      <img 
+        src="/src/assets/img/ChatGPT Image 16 mai 2025, 10_17_21.png" 
+        alt="Kulture Quiz Logo" 
+        className="home-logo"
+      />
+      <h1 className="home-title">Kulture Quiz</h1>
+      <p className="home-subtitle">
+        Testez votre culture générale, défiez vos amis et grimpez dans le classement !
+      </p>
     </header>
   )
 }

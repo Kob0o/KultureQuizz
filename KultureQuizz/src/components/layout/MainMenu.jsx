@@ -1,30 +1,42 @@
 import { useNavigate } from 'react-router-dom'
 
-const MainMenu = () => {
+const MainMenu = ({ user }) => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-[400px]">
-      <button 
-        className="py-5 px-8 text-lg font-semibold rounded-xl cursor-pointer transition-all hover:-translate-y-0.5 hover:shadow-lg bg-[#ff9800] text-white uppercase tracking-wider hover:bg-[#ff7300]"
-        onClick={() => navigate('/quiz')}
-      >
-        Jouer
-      </button>
+    <div className="main-menu">
+      <div className="menu-item" onClick={() => navigate('/quiz')}>
+        <span className="menu-item-icon" role="img" aria-label="quiz">🎲</span>
+        <div className="menu-item-title">Jouer</div>
+        <div className="menu-item-description">Testez vos connaissances avec nos quiz</div>
+      </div>
       
-      <button 
-        className="py-5 px-8 text-lg font-semibold rounded-xl cursor-pointer transition-all hover:-translate-y-0.5 hover:shadow-lg bg-white/10 text-white border-2 border-white/20 uppercase tracking-wider hover:bg-white/20"
-        onClick={() => navigate('/leaderboard')}
-      >
-        Classement
-      </button>
+      <div className="menu-item" onClick={() => navigate('/create-quiz')}>
+        <span className="menu-item-icon" role="img" aria-label="créer">✏️</span>
+        <div className="menu-item-title">Créer un Quiz</div>
+        <div className="menu-item-description">Partagez vos connaissances avec la communauté</div>
+      </div>
       
-      <button 
-        className="py-5 px-8 text-lg font-semibold rounded-xl cursor-pointer transition-all hover:-translate-y-0.5 hover:shadow-lg bg-white/10 text-white border-2 border-white/20 uppercase tracking-wider hover:bg-white/20"
-        onClick={() => navigate('/create-quiz')}
-      >
-        Créer un Quiz
-      </button>
+      {user && (
+        <div className="menu-item" onClick={() => navigate('/profile')} style={{display:'flex',flexDirection:'column',alignItems:'center',gap:'0.5rem'}}>
+          <img 
+            src={user.user_metadata?.picture}
+            alt="Profil utilisateur"
+            style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
+              background: '#fff',
+              objectFit: 'cover'
+            }}
+            crossOrigin="anonymous"
+            referrerPolicy="no-referrer"
+          />
+          <div className="menu-item-title">{user.user_metadata?.name || 'Profil'}</div>
+          <div className="menu-item-description">Gérez votre compte et vos statistiques</div>
+        </div>
+      )}
     </div>
   )
 }

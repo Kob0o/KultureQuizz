@@ -1,58 +1,59 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { supabase } from '../config/supabase'
+import { useAuth } from '../hooks/useAuth'
 
 const Login = () => {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
   const navigate = useNavigate()
+  const { user, loading, login, isAuthenticated } = useAuth()
 
-  const handleGoogleLogin = async () => {
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/')
+    }
+  }, [isAuthenticated, navigate])
+
+  const handleLogin = async () => {
     try {
-      setLoading(true)
-      setError(null)
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/`
-        }
-      })
-      if (error) throw error
+      await login()
     } catch (error) {
-      setError(error.message)
-    } finally {
-      setLoading(false)
+      console.error('Erreur de connexion:', error)
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="bg-white/10 p-10 rounded-2xl backdrop-blur-md shadow-2xl text-center w-full max-w-[400px]">
-        <h1 className="text-white text-4xl font-bold mb-4">
-          Kulture Quizz
-        </h1>
-        <p className="text-white/80 mb-8">
-          Connectez-vous pour commencer à jouer
+    <div className="home">
+      <div className="home-content" style={{ maxWidth: '400px' }}>
+        <img 
+          src="/src/assets/img/ChatGPT Image 16 mai 2025, 10_17_21.png" 
+          alt="Kulture Quiz Logo" 
+          className="home-logo"
+        />
+        <h1 className="home-title">Kulture Quiz</h1>
+        <p className="home-subtitle">
+          Connecte-toi pour jouer, créer et défier tes amis !
         </p>
-
-        {error && (
-          <div className="bg-red-500/10 text-red-500 p-4 rounded-lg mb-4 border border-red-500/20">
-            {error}
-          </div>
-        )}
-
-        <button
-          onClick={handleGoogleLogin}
-          disabled={loading}
-          className="w-full bg-white text-gray-800 py-4 px-8 rounded-lg text-base font-medium cursor-pointer transition-all hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
-        >
-          <img 
-            src="https://www.google.com/favicon.ico" 
-            alt="Google" 
-            className="w-5 h-5"
-          />
-          {loading ? 'Connexion...' : 'Se connecter avec Google'}
-        </button>
+        <div className="card card-glow">
+          <button
+            onClick={handleLogin}
+            disabled={loading}
+            className="btn btn-secondary"
+            style={{ width: '100%' }}
+          >
+            <img 
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png?20230822192911" 
+              alt="Google" 
+              style={{
+                width: '24px',
+                height: '24px',
+                backgroundColor: 'white',
+                borderRadius: '50%',
+                padding: '2px',
+                marginRight: '8px'
+              }}
+            />
+            {loading ? 'Connexion...' : 'Se connecter avec Google'}
+          </button>
+        </div>
       </div>
     </div>
   )
