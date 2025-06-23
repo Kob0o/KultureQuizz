@@ -1,15 +1,7 @@
 import { useState, useEffect } from 'react'
-import { fetchCategories, fetchQuestions, checkAnswer } from '../api/quizApi'
+import { supabase } from '../config/supabase'
 
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-export function useQuiz() {
+export const useQuiz = () => {
   const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [questions, setQuestions] = useState([])
@@ -17,57 +9,73 @@ export function useQuiz() {
   const [selected, setSelected] = useState(null)
   const [score, setScore] = useState(0)
   const [showScore, setShowScore] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [displayedAnswers, setDisplayedAnswers] = useState([])
 
-  // Charger les catégories au montage
   useEffect(() => {
     fetchCategories()
-      .then(setCategories)
-      .catch(() => setError("Impossible de charger les catégories"))
   }, [])
 
-  // Charger les questions quand une catégorie est choisie
   useEffect(() => {
     if (selectedCategory) {
-      setLoading(true)
-      fetchQuestions(selectedCategory.name || selectedCategory)
-        .then(qs => {
-          setQuestions(qs)
-          setLoading(false)
-        })
-        .catch(() => {
-          setError("Impossible de charger les questions")
-          setLoading(false)
-        })
+      fetchQuestions(selectedCategory)
     }
   }, [selectedCategory])
 
-  // Générer 4 réponses aléatoires à chaque changement de question
-  useEffect(() => {
-    if (questions.length > 0 && questions[current]) {
-      const allAnswers = questions[current].answers;
-      const correctAnswer = allAnswers.find(a => a.isCorrect);
-      const incorrectAnswers = allAnswers.filter(a => !a.isCorrect);
-      const randomIncorrect = shuffleArray([...incorrectAnswers]).slice(0, 3);
-      const answersToDisplay = shuffleArray([correctAnswer, ...randomIncorrect]);
-      setDisplayedAnswers(answersToDisplay);
-    } else {
-      setDisplayedAnswers([]);
+  const fetchCategories = async () => {
+    try {
+      setLoading(true)
+      const { data, error } = await supabase
+        .from('categories')
+        .select('*')
+      
+      if (error) throw error
+      setCategories(data)
+    } catch (error) {
+      setError('Erreur lors du chargement des catégories')
+      console.error('Error fetching categories:', error)
+    } finally {
+      setLoading(false)
     }
-  }, [questions, current]);
-
-  const handleAnswer = (answerId) => {
-    setSelected(answerId)
   }
 
-  const handleNext = async () => {
-    if (selected !== null) {
-      const res = await checkAnswer(selectedCategory.name || selectedCategory, questions[current].id, selected)
-      if (res.isCorrect) setScore(score + 1)
+  const fetchQuestions = async (categoryId) => {
+    try {
+      setLoading(true)
+      const { data, error } = await supabase
+        .from('questions')
+        .select('*')
+        .eq('category_id', categoryId)
+      
+      if (error) throw error
+      setQuestions(data)
+    } catch (error) {
+      setError('Erreur lors du chargement des questions')
+      console.error('Error fetching questions:', error)
+    } finally {
+      setLoading(false)
     }
-    if (current < questions.length - 1) {
+  }
+
+  const handleCategory = (category) => {
+    setSelectedCategory(category)
+    setCurrent(0)
+    setSelected(null)
+    setScore(0)
+    setShowScore(false)
+  }
+
+  const handleAnswer = (answer) => {
+    setSelected(answer)
+    const isCorrect = answer === questions[current].correct_answer
+    if (isCorrect) {
+      setScore(score + 1)
+    }
+  }
+
+  const handleNext = () => {
+    if (current + 1 < questions.length) {
       setCurrent(current + 1)
       setSelected(null)
     } else {
@@ -80,16 +88,6 @@ export function useQuiz() {
     setSelected(null)
     setScore(0)
     setShowScore(false)
-    setError(null)
-  }
-
-  const handleCategory = (cat) => {
-    setSelectedCategory(cat)
-    setCurrent(0)
-    setSelected(null)
-    setScore(0)
-    setShowScore(false)
-    setError(null)
   }
 
   const handleBackToCategories = () => {
@@ -99,7 +97,6 @@ export function useQuiz() {
     setSelected(null)
     setScore(0)
     setShowScore(false)
-    setError(null)
   }
 
   return {
