@@ -3,7 +3,7 @@ import AnswerList from './AnswerList'
 
 function QuestionDisplay({ 
   question, 
-  displayedAnswers, // tableau d'arrays de 4 strings
+  displayedAnswers,
   selectedAnswer, 
   onSelectAnswer, 
   onNext, 
@@ -15,7 +15,7 @@ function QuestionDisplay({
   const [timer, setTimer] = useState(30)
   const [isAnswered, setIsAnswered] = useState(false)
   const [localSelected, setLocalSelected] = useState(null)
-  const [answerStatus, setAnswerStatus] = useState(null) // 'correct' | 'incorrect' | null
+  const [answerStatus, setAnswerStatus] = useState(null)
   const timeoutRef = useRef()
   const intervalRef = useRef()
   const hasHandledAnswer = useRef(false)

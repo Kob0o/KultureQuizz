@@ -170,11 +170,6 @@ exports.getQuestionById = async (req, res) => {
   }
 };
 
-// Vérifier une réponse (optionnel, à adapter selon ta logique)
-exports.checkAnswer = (req, res) => {
-  res.status(501).json({ error: 'Non implémenté côté API, à gérer côté front.' });
-};
-
 // Sauvegarder un score de quiz
 exports.saveQuizScore = async (req, res) => {
   try {

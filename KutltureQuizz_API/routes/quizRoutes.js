@@ -24,8 +24,6 @@ router.get('/questions/:category', quizController.getQuestionsByCategory);
 // GET /api/questions/:category/:id
 router.get('/questions/:category/:id', quizController.getQuestionById);
 
-// POST /api/answer
-router.post('/answer', quizController.checkAnswer);
 
 // POST /api/categories
 router.post('/categories', quizController.createCategory);

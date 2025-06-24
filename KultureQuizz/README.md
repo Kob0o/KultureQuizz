@@ -1,9 +1,5 @@
 # 🎯 Kulture Quiz - Application de Quiz de Culture Générale
 
-## 📋 Description
-
-**Kulture Quiz** est une application web moderne de quiz de culture générale développée en **React**. Elle propose une expérience utilisateur **flashy et professionnelle** avec un design **mobile-first** optimisé.
-
 ## ✨ Fonctionnalités
 
 ### 🏠 Page d'Accueil
@@ -59,13 +55,10 @@
 ### Frontend
 - **React 19** avec Hooks
 - **React Router** pour la navigation
-- **CSS Variables** pour le design system
-- **CSS Animations** pour les effets visuels
 
 ### Backend & Services
 - **Node.js/Express** pour l'API REST
-- **Supabase** pour l'authentification (via le backend)
-- **Base de données** pour les questions et catégories
+- **Supabase** pour l'authentification (via le backend) et BDD
 - **Architecture centralisée** : tout passe par le backend
 
 ### Outils de Développement
@@ -87,9 +80,6 @@
 
 ## 🚀 Installation et Démarrage
 
-### Prérequis
-- Node.js (version 18 ou supérieure)
-- npm ou yarn
 
 ### Installation Frontend
 ```bash
@@ -111,11 +101,6 @@ cd KutltureQuizz_API
 # Installer les dépendances
 npm install
 
-# Créer le fichier .env avec vos variables Supabase
-# SUPABASE_URL=votre_url_supabase
-# SUPABASE_ANON_KEY=votre_clé_anon_supabase
-# FRONTEND_URL=http://localhost:5173
-# PORT=4000
 
 # Démarrer le serveur backend
 npm run dev
@@ -136,6 +121,8 @@ KultureQuizz/
 │   │   ├── Home.jsx        # Page d'accueil
 │   │   ├── Login.jsx       # Page de connexion
 │   │   └── CreateQuiz.jsx  # Création de quiz
+|   |   └── Profile.jsx     # Page de profil
+|   |   └── AuthCallback.jsx #Redirection callback pour le login
 │   ├── hooks/              # Hooks personnalisés
 │   │   ├── useQuiz.js      # Logique du quiz
 │   │   ├── useAuth.js      # Authentification via backend
@@ -149,7 +136,6 @@ KultureQuizz/
 │   ├── routes/             # Routes API
 │   ├── data/               # Configuration Supabase
 │   └── server.js           # Serveur Express
-├── DESIGN_SYSTEM.md        # Documentation du design
 └── README.md              # Ce fichier
 ```
 
@@ -167,20 +153,6 @@ KultureQuizz/
 - **Tokens gérés côté backend** uniquement
 - **Sessions centralisées** pour un meilleur contrôle
 
-## 🎯 Critères de Notation Respectés
-
-| Critère | Statut | Points |
-|---------|--------|--------|
-| ✅ Mobile first respecté | ✅ | 2 pts |
-| ✅ Page d'accueil avec logo et titre | ✅ | 1 pt |
-| ✅ Affichage des catégories depuis l'API | ✅ | 2 pts |
-| ✅ Affichage des questions/réponses depuis l'API | ✅ | 3 pts |
-| ⏱️ Timer fonctionnel avec passage automatique | ✅ | 2 pts |
-| 🎨 Coloration de la réponse avant changement | ✅ | 1 pt |
-| 🧮 Calcul et affichage du score final | ✅ | 2 pts |
-| 🧩 Code maintenable, composants bien organisés | ✅ | 2 pts |
-| 🖌️ Design cohérent et professionnel | ✅ | 1 pt |
-| 🎤 Présentation orale | ⏳ | 4 pts |
 
 ## 🔧 Développement
 
@@ -189,8 +161,6 @@ KultureQuizz/
 # Frontend
 npm run dev      # Démarre le serveur de développement
 npm run build    # Build de production
-npm run preview  # Prévisualise le build
-npm run lint     # Vérifie la qualité du code
 
 # Backend
 npm run dev      # Démarre le serveur backend avec nodemon
@@ -199,32 +169,6 @@ npm start        # Démarre le serveur backend
 
 ### Architecture
 - **Composants fonctionnels** avec Hooks
-- **CSS Variables** pour la cohérence du design
 - **Séparation des responsabilités** : UI/Logique/Données
 - **Code modulaire** et réutilisable
 - **API centralisée** pour toutes les opérations
-
-## 📈 Améliorations Futures
-
-- [ ] Système de classement
-- [ ] Mode multijoueur
-- [ ] Quiz personnalisés par utilisateur
-- [ ] Mode hors ligne
-- [ ] Notifications push
-- [ ] Partage de scores sur réseaux sociaux
-
-## 🤝 Contribution
-
-1. Fork le projet
-2. Créer une branche feature (`git checkout -b feature/AmazingFeature`)
-3. Commit les changements (`git commit -m 'Add AmazingFeature'`)
-4. Push vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrir une Pull Request
-
-## 📄 Licence
-
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
----
-
-**Développé avec ❤️ et beaucoup de café ☕**
